@@ -119,7 +119,7 @@ class TimeAwarePolyine {
         );
     }
 
-    public function decode(string $polyline = '') {
+    public function decode(string $polyline = null) {
         $gpxLogs = array();
         $index = $latitude = $longitude = $timestamp = 0;
 
