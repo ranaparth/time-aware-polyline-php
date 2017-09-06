@@ -1,39 +1,47 @@
-<?php 
+<?php
 
 /**
-*  Corresponding Class to test YourClass class
-*
-*  For each class in your library, there should be a corresponding Unit-Test for it
-*  Unit-Tests should be as much as possible independent from other test going on.
-*
-*  @author yourname
-*/
-class YourClassTest extends PHPUnit_Framework_TestCase{
-	
-  /**
-  * Just check if the YourClass has no syntax error 
-  *
-  * This is just a simple check to make sure your library has no syntax error. This helps you troubleshoot
-  * any typo before you even use this library in a real project.
-  *
-  */
-  public function testIsThereAnySyntaxError(){
-	$var = new Buonzz\Template\YourClass;
-	$this->assertTrue(is_object($var));
-	unset($var);
-  }
-  
-  /**
-  * Just check if the YourClass has no syntax error 
-  *
-  * This is just a simple check to make sure your library has no syntax error. This helps you troubleshoot
-  * any typo before you even use this library in a real project.
-  *
-  */
-  public function testMethod1(){
-	$var = new Buonzz\Template\YourClass;
-	$this->assertTrue($var->method1("hey") == 'Hello World');
-	unset($var);
-  }
-  
+ * Test class
+ *
+ *
+ *  @author https://github.com/ranaparth
+ */
+
+class TimeAwarePolyineTest extends PHPUnit_Framework_TestCase {
+
+    public function testIsThereAnySyntaxError(){
+        $var = new RanaParth\Polyline\TimeAwarePolyine;
+        $this->assertTrue(is_object($var));
+        unset($var);
+    }
+
+    public function testEncode() {
+        $var = new RanaParth\Polyline\TimeAwarePolyine;
+
+        $gpxLogs = [
+            [19.13626, 72.92506, '2016-07-21T05:43:09+00:00'],
+            [19.13597, 72.92495, '2016-07-21T05:43:15+00:00'],
+            [19.13553, 72.92469, '2016-07-21T05:43:21+00:00'],
+        ];
+
+        $timeAwarePolyline = 'spxsBsdb|Lymo`qvAx@TKvAr@K';
+
+        $this->assertTrue($var->encode($gpxLogs) == $timeAwarePolyline);
+        unset($var);
+    }
+
+    public function testDecode() {
+        $var = new RanaParth\Polyline\TimeAwarePolyine;
+
+        $gpxLogs = [
+            [19.13626, 72.92506, '2016-07-21T05:43:09+00:00'],
+            [19.13597, 72.92495, '2016-07-21T05:43:15+00:00'],
+            [19.13553, 72.92469, '2016-07-21T05:43:21+00:00'],
+        ];
+
+        $timeAwarePolyline = 'spxsBsdb|Lymo`qvAx@TKvAr@K';
+
+        $this->assertTrue($var->decode($timeAwarePolyline) == $gpxLogs);
+        unset($var);
+    }
 }
