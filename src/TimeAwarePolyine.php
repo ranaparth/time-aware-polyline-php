@@ -46,15 +46,17 @@ class TimeAwarePolyine {
         }
 
         if (empty($this->polyline)) {
-            $this->polyline = '';
+            $polyline = '';
+        } else {
+            $polyline = $this->polyline;
         }
 
         if (empty($gpxLogs)) {
-            return $this->polyline;
+            return $polyline;
         }
 
         foreach ($gpxLogs as $gpxLog) {
-            if (count($gpxLog) != 2) {
+            if (count($gpxLog) != 3) {
                 continue;
             }
 
@@ -65,13 +67,13 @@ class TimeAwarePolyine {
             $diffTimestamp = $timestamp - $lastTimestamp;
 
             foreach (array($diffLatitude, $diffLongitude, $diffTimestamp) as $v) {
-                $v = ($v < 0) ? ~($v << 1) : $v << 1;
+                $v = ($v < 0) ? ~($v << 1) : ($v << 1);
 
                 while ($v >= 0x20) {
-                    $this->polyline += chr((0x20 | ($v & 0x1f)) + 63);
-                    $v >>= 5;
-                    $this->polyline += chr($v + 63);
+                    $polyline .= chr((0x20 | ($v & 0x1f)) + 63);
+                    $v = $v >> 5;
                 }
+                $polyline .= chr($v + 63);
             }
 
             $lastLatitude = $latitude;
@@ -79,7 +81,7 @@ class TimeAwarePolyine {
             $lastTimestamp = $timestamp;
         }
 
-        return $this->polyline;
+        return $polyline;
     }
 
     protected function getDecodedDimensionFromPolyline($polyline, $index) {
@@ -96,7 +98,7 @@ class TimeAwarePolyine {
             }
         }
 
-        $result = ($result != 0) ? $result >> 1 : ~$result >> 1;
+        $result = (($result & 1) != 0) ? ~$result >> 1 : $result >> 1;
 
         return array($index, $result);
     }
