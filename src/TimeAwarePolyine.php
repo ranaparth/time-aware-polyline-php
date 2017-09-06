@@ -12,7 +12,7 @@ class TimeAwarePolyine {
     private $polyline;
     private $lastGpxLogs;
 
-    public function setPreviousPolyline(String $polyline) {
+    public function setPreviousPolyline(string $polyline) {
         $this->polyline = $polyline;
     }
 
@@ -24,7 +24,7 @@ class TimeAwarePolyine {
         return (int) round($coordinate * 1e5, 5);
     }
 
-    protected function getUnixTimeStamp(String $timestamp) {
+    protected function getUnixTimeStamp(string $timestamp) {
         return (int) strtotime($timestamp);
     }
 
@@ -36,7 +36,7 @@ class TimeAwarePolyine {
         );
     }
 
-    public function encode(Array $gpxLogs) {
+    public function encode(Array $gpxLogs = array()) {
         if (empty($this->lastGpxLogs)) {
             $lastLatitude = $lastLongitude = $lastTimestamp = 0;
         } else {
@@ -80,5 +80,63 @@ class TimeAwarePolyine {
         }
 
         return $this->polyline;
+    }
+
+    protected function getDecodedDimensionFromPolyline($polyline, $index) {
+        $result = 1;
+        $shift = 0;
+
+        while (true) {
+            $v = ord($polyline[$index]) - 63 - 1;
+            $index += 1;
+            $result += $v << $shift;
+            $shift += 5;
+            if ($v < 0x1f) {
+                break;
+            }
+        }
+
+        $result = ($result != 0) ? $result >> 1 : ~$result >> 1;
+
+        return array($index, $result);
+    }
+
+    protected function getCoordinateFromPolyline($coordinate) {
+        return round($coordinate * 1e-5, 5);
+    }
+
+    protected function getTimeFromPolyline($time) {
+        return date('c', $time);
+    }
+
+    protected function getGpxFromDecoded($latitude, $longitude, $timestamp) {
+        return array(
+            $this->getCoordinateFromPolyline($latitude),
+            $this->getCoordinateFromPolyline($longitude),
+            $this->getTimeFromPolyline($timestamp)
+        );
+    }
+
+    public function decode(string $polyline = '') {
+        $gpxLogs = array();
+        $index = $latitude = $longitude = $timestamp = 0;
+
+        while ($index < strlen($polyline)) {
+            list($index, $partialLat) = $this->getDecodedDimensionFromPolyline($polyline, $index);
+            list($index, $partialLon) = $this->getDecodedDimensionFromPolyline($polyline, $index);
+            list($index, $partialTime) = $this->getDecodedDimensionFromPolyline($polyline, $index);
+
+            $latitude += $partialLat;
+            $longitude += $partialLon;
+            $timestamp += $partialTime;
+
+            $gpxLog = $this->getGpxFromDecoded($latitude, $longitude, $timestamp);
+
+            if (!empty($gpxLog)) {
+                $gpxLogs[] = $gpxLog;
+            }
+        }
+
+        return $gpxLogs;
     }
 }
