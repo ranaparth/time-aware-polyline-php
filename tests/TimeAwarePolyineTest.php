@@ -1,8 +1,7 @@
 <?php
 
 /**
- * Test class
- *
+ * Time Aware Polyline Test class
  *
  *  @author https://github.com/ranaparth
  */

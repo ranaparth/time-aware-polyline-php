@@ -3,7 +3,7 @@
 namespace RanaParth\Polyline;
 
 /**
-*  Add description
+*  Time Aware Polyline class
 *
 *  @author https://github.com/ranaparth
 */
