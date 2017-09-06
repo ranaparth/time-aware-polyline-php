@@ -17,7 +17,7 @@ class TimeAwarePolyine {
     }
 
     public function setLastGpxLogs(Array $gpxLogs) {
-        $this->lastGpxLogs = $gpsLogs;
+        $this->lastGpxLogs = $gpxLogs;
     }
 
     protected function getCoordinateForPolyline(float $coordinate) {
