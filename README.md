@@ -1,7 +1,8 @@
-Time Aware Polylines in PHP [![Latest Stable Version](https://poser.pugx.org/ranaparth/time-aware-polyline-php/version)](https://packagist.org/packages/ranaparth/time-aware-polyline-php) [![composer.lock available](https://poser.pugx.org/ranaparth/time-aware-polyline-php/composerlock)](https://packagist.org/packages/ranaparth/time-aware-polyline-php) [![LICENSE](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/ranaparth/time-aware-polyline-php/blob/master/LICENSE) [![travis-ci](https://travis-ci.org/ranaparth/time-aware-polyline-php.svg?branch=master)](https://travis-ci.org/ranaparth/time-aware-polyline-php) [![codecov](https://codecov.io/gh/ranaparth/time-aware-polyline-php/branch/master/graph/badge.svg)](https://codecov.io/gh/ranaparth/time-aware-polyline-php)
+Time Aware Polylines in PHP
 =========================
-
 Inspired from [Time aware polylines in javascript](https://github.com/hypertrack/time-aware-polyline-js)
+
+[![Latest Stable Version](https://poser.pugx.org/ranaparth/time-aware-polyline-php/version)](https://packagist.org/packages/ranaparth/time-aware-polyline-php) [![composer.lock available](https://poser.pugx.org/ranaparth/time-aware-polyline-php/composerlock)](https://packagist.org/packages/ranaparth/time-aware-polyline-php) [![LICENSE](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/ranaparth/time-aware-polyline-php/blob/master/LICENSE) [![travis-ci](https://travis-ci.org/ranaparth/time-aware-polyline-php.svg?branch=master)](https://travis-ci.org/ranaparth/time-aware-polyline-php) [![codecov](https://codecov.io/gh/ranaparth/time-aware-polyline-php/branch/master/graph/badge.svg)](https://codecov.io/gh/ranaparth/time-aware-polyline-php)
 
 ### Examples
 
