@@ -3,6 +3,8 @@ Time Aware Polylines in PHP ![travis-ci](https://travis-ci.org/ranaparth/time-aw
 
 Inspired from [Time aware polylines in javascript](https://github.com/hypertrack/time-aware-polyline-js)
 
+### Examples
+
 ```php
 $var = new RanaParth\Polyline\TimeAwarePolyine;
 
@@ -44,5 +46,4 @@ $gpxLogs = [
     [19.13553, 72.92469, '2016-07-21T05:43:21+00:00'],
 ];
 */
-
 ```
