@@ -2,7 +2,7 @@
   "name": "ranaparth/time-aware-polyline-php",
   "description": "Time aware ployline in php",
   "keywords": ["polyline", "composer", "package"],
-  "license": "DBAD",
+  "license": "MIT",
   "authors": [
     {
       "name": "Rana Amrit Parth",
