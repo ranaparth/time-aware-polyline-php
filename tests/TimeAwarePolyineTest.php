@@ -6,7 +6,7 @@
  *  @author https://github.com/ranaparth
  */
 
-class TimeAwarePolyineTest extends PHPUnit_Framework_TestCase {
+class TimeAwarePolyineTest extends \PHPUnit\Framework\TestCase {
 
     public function testIsThereAnySyntaxError(){
         $var = new RanaParth\Polyline\TimeAwarePolyine;
